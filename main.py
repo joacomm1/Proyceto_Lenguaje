@@ -28,15 +28,15 @@ def extract_product_info(html, tienda):
         nombre_producto = nombre_producto[0].text
     # Extraer precios
     precio_normal = soup.find('li', class_='catalog-prices__list-price') or \
-                    next((li.get('data-normal-price') for li in soup.find_all('li', class_='jsx-2112733514') if li.get('data-normal-price')), 'No disponible')
+                    next((li.get('data-normal-price') for li in soup.find_all('li', class_='jsx-2112733514') if li.get('data-normal-price')), 'None')
     precio_normal = precio_normal.text.strip() if hasattr(precio_normal, 'text') else precio_normal
 
     precio_internet = soup.find('li', class_='catalog-prices__offer-price') or \
-                      next((li.get('data-internet-price') for li in soup.find_all('li', class_='jsx-2112733514') if li.get('data-internet-price')), 'No disponible')
+                      next((li.get('data-internet-price') for li in soup.find_all('li', class_='jsx-2112733514') if li.get('data-internet-price')), 'None')
     precio_internet = precio_internet.text.strip() if hasattr(precio_internet, 'text') else precio_internet
 
     precio_tarjeta = soup.find('li', class_='catalog-prices__card-price') or \
-                     next((li.get('data-cmr-price') for li in soup.find_all('li', class_='jsx-2112733514') if li.get('data-cmr-price')), 'No disponible')
+                     next((li.get('data-cmr-price') for li in soup.find_all('li', class_='jsx-2112733514') if li.get('data-cmr-price')), 'None')
     precio_tarjeta = precio_tarjeta.text.strip().split()[0] if hasattr(precio_tarjeta, 'text') else precio_tarjeta
 
     return [nombre_producto, precio_tarjeta, precio_internet, precio_normal, tienda]
