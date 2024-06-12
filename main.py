@@ -57,7 +57,7 @@ def precios_productos_FALABELLA(productos, resultados):
         input_element.send_keys(f"{producto}" + Keys.ENTER)
         time.sleep(3)
 
-        for i in range(1, 10):
+        for i in range(1, 5):
             try:
                 # Crear el XPATH dinámicamente para cada iteración
                 sXpath = f'//*[@id="testId-searchResults-products"]/div[{i}]'
@@ -93,7 +93,7 @@ def precios_productos_RIPLEY(productos, resultados):
         content_data_elements = driver.find_elements(By.CLASS_NAME, 'catalog-product-details')
         
         # Limitar el procesamiento a los primeros 10 elementos
-        for index, contentData in enumerate(content_data_elements[:10]):
+        for index, contentData in enumerate(content_data_elements[:4]):
             try:
                 htmlData = contentData.get_attribute('innerHTML')
                 product_info = extract_product_info(htmlData, "Ripley")
